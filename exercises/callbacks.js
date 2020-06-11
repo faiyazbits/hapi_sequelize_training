@@ -37,8 +37,9 @@ const users = [
 //                      Exercises
 
 /**
- *  1.  Loop the users array without using for loop and 
- *          return back a new array with a selective information
+ *  1.  the firstName and lastName values should be in uppercase 
+ *          in all the objects and return a new array 
+ *  
  *  2.  find the users whose age is greater than 30 
  *          without using for loop
  */
