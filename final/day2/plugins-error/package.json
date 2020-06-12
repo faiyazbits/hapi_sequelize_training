@@ -1,0 +1,19 @@
+{
+  "name": "day2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/good": "^9.0.0",
+    "@hapi/good-console": "^9.0.0",
+    "@hapi/hapi": "^19.1.1",
+    "nodemon": "^2.0.4"
+  }
+}
