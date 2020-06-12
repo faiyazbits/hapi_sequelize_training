@@ -4,11 +4,6 @@ const createSeedData = require("./seed");
 const db = new Sequelize("hapi_training", "admin", "admin", {
   host: "localhost",
   dialect: "postgres",
-  pool: {
-    max: 9,
-    min: 0,
-    idle: 10000,
-  },
 });
 
 function initDb() {
