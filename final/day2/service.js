@@ -1,45 +1,42 @@
 
-const USERS = require('./data');
+const db = require('./db').db;
 const _ = require('lodash');
 
 class UserService{
-
-    users = USERS;
     getUsers(){
-        return this.users;
+        return db.model('User').findAll({})
     }
 
     getUserById(userId){
-        return _.find(this.users,(user)=>{
-            return user.id === userId
+        return db.model('User').findAll({
+            where:{
+                id:userId
+            }
         })
     }
 
     createNewUser(newUserDetails){
-        const newUserId = this.users.length + 1;
-        const newUserObj = _.merge(newUserDetails,{id:newUserId})
-        this.users.push(newUserObj);
-        return newUserObj
+       return db.model('User').create(newUserDetails)
     }
 
     updateUser(userToUpdate,updatedUser){
-        const userObjToUpdate = _.find(this.users,(user)=>{
-            return user.id === userToUpdate
-        })
-        
-        const updatedUserObj = _.merge(userObjToUpdate,updatedUser)
-        this.users = _.map(this.users,(user) => {
-            if(user.id === updatedUserObj.id){
-                return updatedUserObj
-            }else{
-                return user
+        return db.model('User').update(updatedUser,{
+            where:{
+                id:userToUpdate
             }
+        }).then(()=>{
+            return db.model('User').findAll({
+                where:{
+                    id:userToUpdate
+                }
+            })
         })
-        return updatedUserObj
     }
 
     queryUsers(queryobj){
-        return _.filter(this.users,queryobj)
+        return db.model('User').findAll({
+            where:queryobj
+        })
     }
 }
 
