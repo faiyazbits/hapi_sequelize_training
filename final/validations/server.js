@@ -18,7 +18,6 @@ server.route([
 ])
 
 
-server.start()
-.then(()=> {
+server.start().then(()=> {
     console.log("Hapi server started " + PORT)
 })
