@@ -1,0 +1,13 @@
+
+
+{
+    "database":{
+        "db":"hapi_training",
+        "user":"admin",
+        "pass":"admin"
+    },
+    "server":{
+        "port":8080
+    }
+}
+
