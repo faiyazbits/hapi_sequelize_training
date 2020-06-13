@@ -1,25 +1,20 @@
 
-const User = require('../model').model.User
-const UserProfile = require('../model').model.UserProfile
-const UserAddress = require('../model').model.UserAddress
+const models = require('../model');
+const Sequelize = require('sequelize')
+const UserAddress = require('../model').UserAddress
 const _ = require('lodash');
 
 class UserService{
 
     getUserById(userId){
-        return User.findAll({
+        const User = models.User;
+        const UserProfile = models.UserProfile;
+        return User.findOne({
             where:{
                 id:userId
-            },
-            include: [{
-                model: UserProfile,
-                where: { userId: Sequelize.col('user.id') }
-            },
-            {
-                model: UserAddress,
-                where: { userId: Sequelize.col('user.id') }
             }
-            ]
+        }).then((user) => {
+            return user.getUserAddresses()
         })
     }
     

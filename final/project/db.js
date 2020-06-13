@@ -3,9 +3,21 @@
 const _ = require("lodash");
 const Sequelize = require("sequelize");
 const CONFIG = require("./config/defaults.json");
+const models = require("./model");
+const USERS = require("./seed/data").USERS;
+const USER_ADDRESSES = require("./seed/data").USER_ADDRESSES;
+const USER_PROFILES = require("./seed/data").USER_PROFILES;
 
 let orm = null;
 
+function putSeedData(orm) {
+  const User = models.User;
+  const UserAddress = models.UserAddress;
+  const UserProfile = models.UserProfile;
+  return User.bulkCreate(USERS)
+    .then(UserAddress.bulkCreate(USER_ADDRESSES))
+    .then(UserProfile.bulkCreate(USER_PROFILES));
+}
 /**
  * Open database connection and initialize ORM.
  */
@@ -30,9 +42,12 @@ exports.open = function () {
       orm.Sequelize = Sequelize;
 
       // force will drop the tables and create them again.this is only for training
-      sequelize.sync({ force: true }).then(() => {
-          resolve()
-      });
+      sequelize
+        .sync()
+        .then(putSeedData())
+        .then(() => {
+          resolve();
+        });
     }
   });
 };
