@@ -3,7 +3,7 @@
 const Hapi = require("@hapi/hapi");
 const openDb = require("./db").open;
 const CONFIG = require('./config/defaults.json');
-const routes = require('./routes/user.routes');
+const routes = require('./routes');
 
 const server = new Hapi.Server({
   host: "localhost",

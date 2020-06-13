@@ -1,10 +1,9 @@
-const UserHandler = require('../handlers/user.handler')
-
+const UserHandler = require("../handlers/user.handler");
 
 module.exports = [
-    {
-        method: "GET",
-        path: "/users/{userId}",
-        handler: UserHandler.getUserById,
-      }
-]
+  {
+    method: "GET",
+    path: "/users/{userId}",
+    handler: UserHandler.getUserById,
+  },
+];

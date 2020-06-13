@@ -1,6 +1,7 @@
 const Model = require("sequelize").Model;
 
 module.exports = (sequelize, DataTypes) => {
+  
   class User extends Model {}
 
   User.init(
@@ -13,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
   return User;
 };
+
 
 module.exports.initRelations = () => {
   delete module.exports.initRelations; // Destroy itself to prevent repeated calls.

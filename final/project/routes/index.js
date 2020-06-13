@@ -1,3 +1,3 @@
+const USER_ROUTES = require('./user.routes');
 
-
-module.exports = [].concat[require('./user.routes')]
+module.exports = [].concat(USER_ROUTES)
