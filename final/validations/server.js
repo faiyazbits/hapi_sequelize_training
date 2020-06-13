@@ -14,7 +14,22 @@ server.route([
         const {value, error} = UserSchema.validate(request.payload)
         if (error) return error.details;
         return value;
-    }}
+    }},
+    {
+        method: 'GET',
+        path: '/hello/{name}',
+        handler: function (request, h) {
+    
+             return `Hello ${request.params.name}!`;
+        },
+        options: {
+            validate: {
+                params: Joi.object({
+                    name: Joi.string().min(3).max(10)
+                })
+            }
+        }
+    }
 ])
 
 
